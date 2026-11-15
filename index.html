@@ -1138,6 +1138,30 @@
   .kitty-backs{position:relative;width:30px;height:46px;flex:0 0 30px}
   .kitty-backs .back{position:absolute;left:0;top:0;width:26px;height:40px}
   .kitty-backs .back:nth-child(2){left:5px;top:5px}
+
+  /* ===== News banner — small gold announcement at the top of the table =====
+     Sits as the first row of the top rail (inside .board-head, spanning
+     the full width), above Settings and the scores. It is in the normal
+     flow — never an overlay — so it cannot cover cards, the trump
+     display, scores, or the Start button. The ✕ hides it for this visit
+     only; it shows again the next time the game opens. */
+  .news-banner{grid-column:1/-1;display:flex;align-items:center;gap:8px;background:linear-gradient(180deg,var(--gold-soft),var(--gold));color:#422006;border:1.5px solid #fff3d6;border-radius:12px;padding:5px 6px 5px 12px;font-size:.84rem;font-weight:600;line-height:1.35;box-shadow:0 3px 10px rgba(0,0,0,.35);text-align:center}
+  .news-banner[hidden]{display:none !important}
+  .news-banner .news-text{flex:1 1 auto;min-width:0}
+  .news-banner .news-text strong{font-weight:800}
+  .news-close{appearance:none;flex:0 0 auto;width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(66,32,6,.4);background:rgba(66,32,6,.12);color:#422006;font-size:1rem;font-weight:800;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+  .news-close:hover{background:rgba(66,32,6,.24)}
+  .news-close:focus-visible{outline:3px solid #fff;outline-offset:2px}
+  @media (orientation:portrait) and (max-width:640px){
+    .news-banner{font-size:.76rem;padding:4px 5px 4px 10px;border-radius:10px}
+    .news-close{width:24px;height:24px}
+  }
+  @media (orientation:landscape) and (max-height:700px), (min-aspect-ratio:1/1) and (max-height:700px){
+    .news-banner{font-size:.72rem;line-height:1.25;padding:2px 4px 2px 10px;border-radius:9px}
+    .news-close{width:20px;height:20px;font-size:.85rem}
+  }
+  html.ls .news-banner{font-size:.72rem;line-height:1.25;padding:2px 4px 2px 10px;border-radius:9px}
+  html.ls .news-close{width:20px;height:20px;font-size:.85rem}
 </style>
 </head>
 <body>
@@ -1151,6 +1175,10 @@
   <section class="table" aria-label="Card table">
     <div class="rotate-hint"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg> Turn your phone sideways for the wide table.</div>
     <div class="board-head">
+      <div class="news-banner" id="news-banner" role="region" aria-label="Game news">
+        <span class="news-text"><strong>News:</strong> Multiplayer coming soon — play with friends from your own phone is on the way. Stay tuned!</span>
+        <button class="news-close" id="news-close" type="button" aria-label="Close news banner">✕</button>
+      </div>
       <div class="menu-bar">
         <button class="menu-btn" id="menu-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="settings-menu"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg> Settings</button>
         <span class="menu-summary" id="menu-summary">Dad · 4 players · On your own · Classic Red</span>
@@ -3746,6 +3774,17 @@ $("btn-start").addEventListener("click",function(){
   });
   if(window.screen && screen.orientation && screen.orientation.addEventListener){
     try{ screen.orientation.addEventListener("change", function(){ fit(); setTimeout(fit, 80); }); }catch(e){}
+  }
+})();
+</script>
+<script>
+/* News banner — the ✕ closes it for this visit only (nothing is saved),
+   so the announcement shows again the next time the game opens. */
+(function(){
+  var banner=document.getElementById("news-banner");
+  var close=document.getElementById("news-close");
+  if(banner && close){
+    close.addEventListener("click",function(){ banner.hidden=true; });
   }
 })();
 </script>
