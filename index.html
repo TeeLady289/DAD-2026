@@ -1164,6 +1164,39 @@
   html.ls .news-banner{font-size:.72rem;line-height:1.25;padding:2px 4px 2px 10px;border-radius:9px}
   html.ls .news-close{width:20px;height:20px;font-size:.85rem}
 
+  /* ===== Play Store tester banner — prominent gold banner above the table =====
+     Separate from the News banner inside the table rail. Shows every time
+     the game opens; the ✕ hides it for this visit only (nothing saved).
+     The whole banner text is a link to the Play internal test. */
+  .tester-banner{display:flex;align-items:center;gap:10px;background:linear-gradient(180deg,var(--gold-soft),var(--gold));color:#422006;border:2px solid #b45309;border-radius:14px;padding:10px 8px 10px 16px;margin:0 auto 10px;max-width:760px;width:100%;box-shadow:0 6px 18px rgba(0,0,0,.28);text-align:center}
+  .tester-banner[hidden]{display:none !important}
+  .tester-link{flex:1 1 auto;min-width:0;color:#422006;text-decoration:none;font-size:1rem;font-weight:700;line-height:1.4;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 12px}
+  .tester-link:hover{text-decoration:underline}
+  .tester-link:focus-visible{outline:3px solid #422006;outline-offset:2px;border-radius:6px}
+  .tester-cta{display:inline-block;background:#422006;color:#fef3c7;border-radius:999px;padding:5px 14px;font-size:.9rem;font-weight:800;white-space:nowrap;text-decoration:underline;text-underline-offset:2px}
+  .tester-close{appearance:none;flex:0 0 auto;width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(66,32,6,.45);background:rgba(66,32,6,.12);color:#422006;font-size:1.05rem;font-weight:800;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+  .tester-close:hover{background:rgba(66,32,6,.24)}
+  .tester-close:focus-visible{outline:3px solid #422006;outline-offset:2px}
+  @media (orientation:portrait) and (max-width:640px){
+    .tester-banner{padding:8px 6px 8px 12px;margin-bottom:8px;border-radius:12px}
+    .tester-link{font-size:.9rem}
+    .tester-cta{font-size:.84rem;padding:4px 12px}
+    .tester-close{width:26px;height:26px}
+  }
+  @media (orientation:landscape) and (max-height:700px), (min-aspect-ratio:1/1) and (max-height:700px){
+    .tester-banner{padding:4px 6px 4px 12px;margin-bottom:4px;border-radius:10px}
+    .tester-link{font-size:.82rem;line-height:1.25}
+    .tester-cta{font-size:.78rem;padding:3px 10px}
+    .tester-close{width:22px;height:22px;font-size:.9rem}
+  }
+  html.ls .tester-banner{padding:4px 6px 4px 12px;margin-bottom:4px;border-radius:10px}
+  html.ls .tester-link{font-size:.82rem;line-height:1.25}
+  html.ls .tester-cta{font-size:.78rem;padding:3px 10px}
+  html.ls .tester-close{width:22px;height:22px;font-size:.9rem}
+  @media (min-width:1025px){
+    .tester-banner{margin-bottom:12px}
+  }
+
   /* ===== Real-looking tables — pick yours in Settings → Table =====
      Three table surfaces, all ready from the start, switched by the
      data-table attribute on <html> (applyTable stamps it and sets the
@@ -1204,7 +1237,13 @@
   <div class="rainbow-strip" aria-hidden="true"></div>
   <p class="tagline">First to 500 wins.</p>
 
-
+  <div class="tester-banner" id="tester-banner" role="region" aria-label="Now available on Google Play Store">
+    <a class="tester-link" href="https://play.google.com/apps/internaltest/4700946899777188918" target="_blank" rel="noopener noreferrer">
+      <span>Now available on Google Play Store — sign up as a tester</span>
+      <span class="tester-cta">Sign up as a tester</span>
+    </a>
+    <button class="tester-close" id="tester-close" type="button" aria-label="Close Play Store tester banner">✕</button>
+  </div>
 
   <section class="table" aria-label="Card table">
     <div class="rotate-hint"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg> Turn your phone sideways for the wide table.</div>
@@ -3881,6 +3920,15 @@ $("btn-start").addEventListener("click",function(){
 (function(){
   var banner=document.getElementById("news-banner");
   var close=document.getElementById("news-close");
+  if(banner && close){
+    close.addEventListener("click",function(){ banner.hidden=true; });
+  }
+})();
+/* Play Store tester banner — the ✕ closes it for this visit only
+   (nothing is saved), so it shows again the next time the game opens. */
+(function(){
+  var banner=document.getElementById("tester-banner");
+  var close=document.getElementById("tester-close");
   if(banner && close){
     close.addEventListener("click",function(){ banner.hidden=true; });
   }
