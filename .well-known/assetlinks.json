@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.thelmabushandtyrone.dad",
+      "sha256_cert_fingerprints": ["92ED67B85C39B77DA86B282D77F1782B62B400710F08E3A3EEE5D960B584AA10"]
+    }
+  }
+]
