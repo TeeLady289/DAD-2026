@@ -1,16 +1,11 @@
 {
-  "name": "Dad — Card Game",
+  "name": "Dad \u2014 Card Game",
   "short_name": "Dad",
-  "description": "Dad is the Indiana house game of Clabber. 2, 3, or 4 players against the computer. Four Jacks are 200, dads are runs in one suit, Bella is King and Queen of trumps. First to 500 wins. Play chips only — no real money, no cash value.",
+  "description": "Dad is the Indiana house game of Clabber. 2, 3, or 4 players against the computer. Four Jacks are 200, dads are runs in one suit, Bella is King and Queen of trumps. First to 500 wins. Play chips only \u2014 no real money, no cash value.",
   "start_url": "https://teelady289.github.io/DAD-2026/",
   "scope": "https://teelady289.github.io/DAD-2026/",
   "display": "fullscreen",
   "orientation": "landscape",
   "background_color": "#14532d",
-  "theme_color": "#14532d",
-  "icons": [
-    {"src": "https://teelady289.github.io/DAD-2026/icon-192.png", "sizes": "192x192", "type": "image/png"},
-    {"src": "https://teelady289.github.io/DAD-2026/icon-512.png", "sizes": "512x512", "type": "image/png"},
-    {"src": "https://teelady289.github.io/DAD-2026/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
-  ]
+  "theme_color": "#14532d"
 }
