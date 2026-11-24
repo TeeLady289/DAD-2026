@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-table="green">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -1163,6 +1163,39 @@
   }
   html.ls .news-banner{font-size:.72rem;line-height:1.25;padding:2px 4px 2px 10px;border-radius:9px}
   html.ls .news-close{width:20px;height:20px;font-size:.85rem}
+
+  /* ===== Real-looking tables — pick yours in Settings → Table =====
+     Three table surfaces, all ready from the start, switched by the
+     data-table attribute on <html> (applyTable stamps it and sets the
+     felt colours). The card designs no longer recolour the surface —
+     the table you pick is the table you keep; designs still change
+     the card backs, the gold accent and the card faces.
+       · Green Felt — the classic casino table: deep green baize with
+         a woven cross-hatch grain and a pool of light in the middle.
+       · Purple Felt — the same real felt weave in rich casino purple.
+       · Dark Wood — no felt at all: a smooth peanut-butter tabletop
+         with a soft sheen and no plank seams or grain streaks, framed
+         by the polished dark wood border / rail. */
+  html[data-table="green"] .table,
+  html[data-table="purple"] .table{
+    background:
+      radial-gradient(ellipse at 50% 32%, rgba(255,255,255,.14), rgba(255,255,255,0) 52%),
+      repeating-linear-gradient(45deg, rgba(255,255,255,.030) 0 2px, rgba(0,0,0,.030) 2px 4px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,.024) 0 2px, rgba(0,0,0,.024) 2px 4px),
+      radial-gradient(ellipse at 50% 40%, var(--felt2), var(--felt) 58%, var(--felt-dark));
+  }
+  html[data-table="wood"] .table{
+    border-color:#241203;
+    background:
+      radial-gradient(ellipse at 50% 28%, rgba(255,236,190,.22), rgba(255,236,190,0) 55%),
+      linear-gradient(115deg, rgba(255,255,255,.07), rgba(255,255,255,0) 42%),
+      radial-gradient(ellipse at 50% 40%, #d9a85c, #c68e42 58%, #a8742e);
+  }
+  /* Little table swatches inside the Settings → Table buttons */
+  .seg .tbl-dot{display:inline-block;width:13px;height:13px;border-radius:50%;margin-right:6px;vertical-align:-2px;border:1.5px solid rgba(0,0,0,.4);box-shadow:inset 0 1px 2px rgba(255,255,255,.4), 0 1px 2px rgba(0,0,0,.3)}
+  .seg .tbl-dot.green{background:radial-gradient(circle at 35% 30%, #2f9e5f, #14532d 72%)}
+  .seg .tbl-dot.wood{background:radial-gradient(circle at 35% 30%, #e3b96e, #c68e42 72%);border-color:#3a2410}
+  .seg .tbl-dot.purple{background:radial-gradient(circle at 35% 30%, #a855f7, #4c1d95 72%)}
 </style>
 </head>
 <body>
@@ -1233,6 +1266,14 @@
         <span class="s-note" id="sound-note">Card sounds on — shuffle, deal &amp; play.</span>
       </div>
 
+      <div class="settings" role="group" aria-label="Table style setting">
+        <span class="s-label">Table:</span>
+        <button class="seg seg-table active" data-table-style="green"><span class="tbl-dot green" aria-hidden="true"></span>Green felt</button>
+        <button class="seg seg-table" data-table-style="wood"><span class="tbl-dot wood" aria-hidden="true"></span>Dark wood</button>
+        <button class="seg seg-table" data-table-style="purple"><span class="tbl-dot purple" aria-hidden="true"></span>Purple felt</button>
+        <span class="s-note" id="table-note">Green felt — the classic casino table.</span>
+      </div>
+
       <div class="menu-section" aria-label="Card designs">
         <h3 class="sm-section-title">Card designs</h3>
         <p class="designs-progress" id="designs-progress"></p>
@@ -1287,7 +1328,8 @@
       <p><strong>Scoring:</strong> after all the tricks, each side adds up its card points, meld, and the last-trick bonus. If the side that called trump outscored everybody else, each side keeps its own points. If they didn't, that's a buck — see below.</p>
       <p><strong>Bucking:</strong> calling trump and not making it is a <strong>buck</strong>. The side that got bucked scores <strong>0 for the hand</strong> and loses extra points on top of that: <strong>−50</strong> in a 2- or 3-player game, <strong>−100</strong> with 4 players. When a hand ends, its results flash <strong>in the middle of the table</strong> for about 15 seconds while the deck is shuffled, then the next hand deals itself — and the buck shows right in the score too: the bucked team or player is marked <strong>BUCKED</strong> on their score card, on the table.</p>
       <p><strong>You can come back from a buck.</strong> A buck does <strong>not</strong> end the match and nobody is knocked out. Scores are never stopped at zero — a buck can put a side in the negatives, and that's fine: they just have further to climb. That's what makes the score <strong>fluctuate</strong> — one hand you're up, the next you're bucked back down, and later in the same match you can buck the other side right back. Each team may buck the other throughout the match. The game keeps dealing, hand after hand, until somebody actually reaches <strong>500</strong>. Down is not out — not in Dad.</p>
-      <p><strong>Card designs:</strong> win hands to earn new card designs — fresh colors for the card backs and the table. Win a whole game to earn the Champion Gold design. Pick any design you've earned right here in the Settings menu, under Card designs. <strong>Ocean Swirl</strong> is our own original design — deep-blue ocean swirls with a spade at the centre and pale-blue faces — ready to pick from the start.</p>
+      <p><strong>Card designs:</strong> win hands to earn new card designs — fresh colors for the card backs. Win a whole game to earn the Champion Gold design. Pick any design you've earned right here in the Settings menu, under Card designs. <strong>Ocean Swirl</strong> is our own original design — deep-blue ocean swirls with a spade at the centre and pale-blue faces — ready to pick from the start.</p>
+      <p><strong>Table:</strong> pick the table you play on in Settings → <strong>Table</strong>. There are three real-looking tables, all ready from the start — no winning needed: <strong>Green Felt</strong>, the classic casino table; <strong>Dark Wood</strong>, a smooth peanut-butter top with a polished wood border and no felt; and <strong>Purple Felt</strong>, rich purple casino felt. Switching tables never restarts your game — the new table is just there, even in the middle of a hand — and your card design stays whatever you picked.</p>
       <p><strong>Play-chip tables (Chips setting — pick it before you start):</strong> these are <strong>play chips only — no real money, no cash value, and chips can't be cashed out</strong>. Pick a <strong>$1, $2, or $5 table</strong> in the Settings menu (or leave chips <strong>Off</strong> for points only). Everybody starts with <strong>100 chips</strong>. Each hand, every player antes the table stake into the <strong>main pot</strong>, and the side that wins the hand takes it (partners split it). On the <strong>first hand only</strong>, everybody antes the stake again into a <strong>side pot</strong>: it's judged on each player's <strong>first 6 cards</strong> as a poker hand — pair, two pair, three of a kind, straight, flush, full house, four of a kind — and the best poker hand wins it, paid when the hand ends (a tie splits it). The stakes, both pots, and everybody's stack sit on the table under the scores. If a stack can't cover the ante, the table offers a <strong>rebuy</strong> that tops it back up to 100 — stacks never go negative.</p>
     </details>
 
@@ -1404,7 +1446,22 @@ var DESIGNS=[
   {id:"royal",   name:"Royal Purple",   back:"repeating-linear-gradient(45deg,#581c87 0 6px,#7e22ce 6px 12px)", felt2:"#7e22ce", felt:"#6b21a8", feltDark:"#3b0764", accent:"#d8b4fe", needHands:5, needGame:0},
   {id:"champion",name:"Champion Gold",  back:"repeating-linear-gradient(45deg,#1c1917 0 6px,#b45309 6px 12px)", felt2:"#44403c", felt:"#292524", feltDark:"#0c0a09", accent:"#f5d67a", needHands:0, needGame:1}
 ];
-var meta={ playerCount:4, variant:"dad", assist:false, handsWon:0, gamesWon:0, design:"classic", chipStake:0, sound:true };
+/* ---------- Table styles — real-looking tables, all free ----------
+   The table surface is its own setting (Settings → Table), separate
+   from the card designs: Green Felt (the classic casino table), Dark
+   Wood (polished planks, no felt) and Purple Felt. All three are
+   ready from the start — no winning needed — and switching tables
+   never restarts the game. applyTable stamps data-table on <html>
+   (the textures live in the CSS under that attribute) and sets the
+   felt colours the surface gradient is built from. */
+var TABLES=[
+  {id:"green",  name:"Green Felt",  felt2:"#166534", felt:"#14532d", feltDark:"#0b3d20", note:"Green felt — the classic casino table."},
+  {id:"wood",   name:"Dark Wood",   felt2:"#d9a85c", felt:"#c68e42", feltDark:"#a8742e", note:"Dark wood — smooth peanut-butter top, polished wood border."},
+  {id:"purple", name:"Purple Felt", felt2:"#7e22ce", felt:"#6b21a8", feltDark:"#3b0764", note:"Purple felt — rich purple, casino style."}
+];
+function tableById(id){ for(var i=0;i<TABLES.length;i++) if(TABLES[i].id===id) return TABLES[i]; return TABLES[0]; }
+function tableNote(){ return tableById(meta.table).note; }
+var meta={ playerCount:4, variant:"dad", assist:false, handsWon:0, gamesWon:0, design:"classic", table:"green", chipStake:0, sound:true };
 /* ---------- Play-chip tables ----------
    Play chips ONLY: no real money, no cash value, chips cannot be
    cashed out. meta.chipStake is the table stake chosen in Settings
@@ -3190,10 +3247,18 @@ function showUnlocks(list){
 function applyDesign(id){
   var d=designById(id); meta.design=id;
   var r=document.documentElement.style;
-  r.setProperty("--felt",d.felt); r.setProperty("--felt2",d.felt2); r.setProperty("--felt-dark",d.feltDark);
+  // Designs own the card backs, the gold accent and the card faces.
+  // The table surface itself belongs to the Table setting now, so
+  // picking a design never changes the table out from under you.
   r.setProperty("--gold",d.accent); r.setProperty("--back-bg",d.back);
   r.setProperty("--paper",d.face||"#fffdf7");
   document.documentElement.setAttribute("data-design",id);
+}
+function applyTable(id){
+  var t=tableById(id); meta.table=id;
+  var r=document.documentElement.style;
+  r.setProperty("--felt",t.felt); r.setProperty("--felt2",t.felt2); r.setProperty("--felt-dark",t.feltDark);
+  document.documentElement.setAttribute("data-table",id);
 }
 function renderDesigns(){
   var earned=DESIGNS.filter(function(d){return designUnlocked(d);}).length;
@@ -3239,8 +3304,12 @@ function renderSettings(){
     b.classList.toggle("active",(b.getAttribute("data-sound")==="on")===soundOn());
   });
   var sn=$("sound-note"); if(sn) sn.textContent=soundNote();
+  Array.prototype.forEach.call(document.querySelectorAll(".seg[data-table-style]"),function(b){
+    b.classList.toggle("active",b.getAttribute("data-table-style")===meta.table);
+  });
+  var tn=$("table-note"); if(tn) tn.textContent=tableNote();
   var ms=$("menu-summary");
-  if(ms) ms.textContent=variantName(meta.variant)+" · "+meta.playerCount+" players · "+(assistOn()?"Tutorial — computer assist":"On your own")+" · "+designById(meta.design).name+" · "+(chipOn()?("Play chips $"+meta.chipStake):"Chips off");
+  if(ms) ms.textContent=variantName(meta.variant)+" · "+meta.playerCount+" players · "+(assistOn()?"Tutorial — computer assist":"On your own")+" · "+designById(meta.design).name+" · "+tableById(meta.table).name+" table · "+(chipOn()?("Play chips $"+meta.chipStake):"Chips off");
 }
 /* Play-chip stakes & pots — one slim pill on the table under the
    scores. Always labelled play chips only: no real money, no cash
@@ -3707,6 +3776,17 @@ Array.prototype.forEach.call(document.querySelectorAll(".seg[data-sound]"),funct
     if(on) sfxShuffle();
   });
 });
+Array.prototype.forEach.call(document.querySelectorAll(".seg[data-table-style]"),function(b){
+  b.addEventListener("click",function(){
+    var id=b.getAttribute("data-table-style");
+    if(id===meta.table) return;
+    // Switching tables never restarts the game — the new surface is
+    // just there, mid-hand if that's when you pick it.
+    applyTable(id);
+    renderSettings();
+    log("Table switched to "+tableById(id).name+".");
+  });
+});
 Array.prototype.forEach.call(document.querySelectorAll(".seg[data-chips]"),function(b){
   b.addEventListener("click",function(){
     var v=parseInt(b.getAttribute("data-chips"),10);
@@ -3754,6 +3834,7 @@ $("btn-sort-hand").addEventListener("click",function(){
   log("Your cards are sorted back — trump first, then by suit.");
 });
 DESIGNS.forEach(function(d){ d.wasUnlocked=designUnlocked(d); });
+applyTable("green");
 applyDesign("classic");
 newGame();
 setStatus("Tap <strong>Start the game</strong> when you're ready.");
