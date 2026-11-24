@@ -1167,31 +1167,46 @@
   /* ===== Play Store tester banner — prominent gold banner above the table =====
      Separate from the News banner inside the table rail. Shows every time
      the game opens; the ✕ hides it for this visit only (nothing saved).
-     The whole banner text is a link to the Play internal test. */
-  .tester-banner{display:flex;align-items:center;gap:10px;background:linear-gradient(180deg,var(--gold-soft),var(--gold));color:#422006;border:2px solid #b45309;border-radius:14px;padding:10px 8px 10px 16px;margin:0 auto 10px;max-width:760px;width:100%;box-shadow:0 6px 18px rgba(0,0,0,.28);text-align:center}
+     One way to sign up: the "Sign up as a tester" button opens Gmail
+     compose prefilled to Thelma, so the player just adds their Gmail
+     address and sends. A smaller link underneath goes to the Play
+     internal test for players already added as testers. */
+  .tester-banner{display:flex;align-items:flex-start;gap:10px;background:linear-gradient(180deg,var(--gold-soft),var(--gold));color:#422006;border:2px solid #b45309;border-radius:14px;padding:10px 8px 10px 16px;margin:0 auto 10px;max-width:760px;width:100%;box-shadow:0 6px 18px rgba(0,0,0,.28);text-align:center}
   .tester-banner[hidden]{display:none !important}
-  .tester-link{flex:1 1 auto;min-width:0;color:#422006;text-decoration:none;font-size:1rem;font-weight:700;line-height:1.4;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 12px}
-  .tester-link:hover{text-decoration:underline}
-  .tester-link:focus-visible{outline:3px solid #422006;outline-offset:2px;border-radius:6px}
+  .tester-main{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:5px}
+  .tester-title{font-size:1rem;font-weight:700;line-height:1.4}
+  .tester-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:5px 10px}
   .tester-cta{display:inline-block;background:#422006;color:#fef3c7;border-radius:999px;padding:5px 14px;font-size:.9rem;font-weight:800;white-space:nowrap;text-decoration:underline;text-underline-offset:2px}
+  .tester-cta:hover{background:#5b2d08}
+  .tester-cta:focus-visible{outline:3px solid #422006;outline-offset:2px}
+  .tester-play{color:#422006;font-size:.82rem;font-weight:600;line-height:1.35;text-decoration:underline;text-underline-offset:2px}
+  .tester-play:hover{color:#5b2d08}
+  .tester-play:focus-visible{outline:3px solid #422006;outline-offset:2px;border-radius:4px}
   .tester-close{appearance:none;flex:0 0 auto;width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(66,32,6,.45);background:rgba(66,32,6,.12);color:#422006;font-size:1.05rem;font-weight:800;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
   .tester-close:hover{background:rgba(66,32,6,.24)}
   .tester-close:focus-visible{outline:3px solid #422006;outline-offset:2px}
   @media (orientation:portrait) and (max-width:640px){
     .tester-banner{padding:8px 6px 8px 12px;margin-bottom:8px;border-radius:12px}
-    .tester-link{font-size:.9rem}
+    .tester-title{font-size:.9rem}
     .tester-cta{font-size:.84rem;padding:4px 12px}
+    .tester-play{font-size:.78rem}
     .tester-close{width:26px;height:26px}
   }
   @media (orientation:landscape) and (max-height:700px), (min-aspect-ratio:1/1) and (max-height:700px){
-    .tester-banner{padding:4px 6px 4px 12px;margin-bottom:4px;border-radius:10px}
-    .tester-link{font-size:.82rem;line-height:1.25}
+    .tester-banner{padding:4px 6px 5px 12px;margin-bottom:4px;border-radius:10px;align-items:center}
+    .tester-main{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:3px 10px}
+    .tester-title{font-size:.82rem;line-height:1.25}
+    .tester-actions{gap:3px 8px}
     .tester-cta{font-size:.78rem;padding:3px 10px}
+    .tester-play{font-size:.72rem}
     .tester-close{width:22px;height:22px;font-size:.9rem}
   }
-  html.ls .tester-banner{padding:4px 6px 4px 12px;margin-bottom:4px;border-radius:10px}
-  html.ls .tester-link{font-size:.82rem;line-height:1.25}
+  html.ls .tester-banner{padding:4px 6px 5px 12px;margin-bottom:4px;border-radius:10px;align-items:center}
+  html.ls .tester-main{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:3px 10px}
+  html.ls .tester-title{font-size:.82rem;line-height:1.25}
+  html.ls .tester-actions{gap:3px 8px}
   html.ls .tester-cta{font-size:.78rem;padding:3px 10px}
+  html.ls .tester-play{font-size:.72rem}
   html.ls .tester-close{width:22px;height:22px;font-size:.9rem}
   @media (min-width:1025px){
     .tester-banner{margin-bottom:12px}
@@ -1238,10 +1253,13 @@
   <p class="tagline">First to 500 wins.</p>
 
   <div class="tester-banner" id="tester-banner" role="region" aria-label="Now available on Google Play Store">
-    <a class="tester-link" href="https://play.google.com/apps/internaltest/4700946899777188918" target="_blank" rel="noopener noreferrer">
-      <span>Now available on Google Play Store — sign up as a tester</span>
-      <span class="tester-cta">Sign up as a tester</span>
-    </a>
+    <div class="tester-main">
+      <span class="tester-title">Now available on Google Play Store — sign up as a tester</span>
+      <span class="tester-actions">
+        <a class="tester-cta" href="https://mail.google.com/mail/?view=cm&fs=1&to=thelmabush@gmail.com&su=Dad%20tester%20sign-up&body=Hi%20TeeLady%2C%20I%20want%20to%20test%20Dad%20on%20Google%20Play.%20My%20Gmail%20address%20is%3A%20" target="_blank" rel="noopener noreferrer">Sign up as a tester</a>
+      </span>
+      <a class="tester-play" href="https://play.google.com/apps/internaltest/4700946899777188918" target="_blank" rel="noopener noreferrer">Already added? Get Dad on Play</a>
+    </div>
     <button class="tester-close" id="tester-close" type="button" aria-label="Close Play Store tester banner">✕</button>
   </div>
 
